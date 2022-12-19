@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+#	cat draft_content.json | grep -P '[\p{Han}]' -o | paste -sd' ' | tr -d ' ' > text
+cat draft_content.json | grep -P '[\p{Han}]' -o | paste -sd' ' | tr -d ' ' | sed -e "s/.\{1\}/&\n/g" | awk -v pat="啊嗯" 'pat !~ $0' | tr -d '\n' > text
+python3 addPuncuation.py
